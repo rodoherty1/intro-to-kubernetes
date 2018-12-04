@@ -48,7 +48,35 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Namespaces and Labels
 
 ## Small demo
-* Payload Viewer and Cassandra are running in separate pods on Google Cloud Platform
+DM Payload Viewer and a single-node Cassandra instance are running in Google Cloud Platform.
+Both services are deployed into Google Kubernetes Engine, GCP's managed Kubernetes Platform.
+Both DM Payload Viewer and Cassandra each run in their own container, with each container running in its own Pod.
+
+```
+             +-------+                                       +-------+
+             |Service|                                       |Service|
+             +-------+                                       +-------+
+                 |                                               |
+                 |                                               |
+                 |                                               |
+                 |                                               |
++----------------------------------+            +----------------------------------+
+|Deployment                        |            |Deployment                        |
+|                                  |            |                                  |
+|    +------------------------+    |            |    +------------------------+    |
+|    |Pod                     |    |            |    |Pod                     |    |
+|    |                        |    |            |    |                        |    |
+|    | +--------------------+ |    |            |    | +--------------------+ |    |
+|    | |Cassandra Container | |    |            |    | |Payload Viewer      | |    |
+|    | |                    | |    |            |    | |Container           | |    |
+|    | |                    | |    |            |    | |                    | |    |
+|    | +--------------------+ |    |            |    | +--------------------+ |    |
+|    |                        |    |            |    |                        |    |
+|    +------------------------+    |            |    +------------------------+    |
+|                                  |            |                                  |
++----------------------------------+            +----------------------------------+
+```
+
 
 ## Some great resources for getting started
 * [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)
