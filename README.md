@@ -41,6 +41,7 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Auto-scaling of the pods
 
 ## How to get started?
+* _TODO_
 
 ## Kubernetes Workflow
 * Declarative approach to K8s cluster design using YAML files  
@@ -88,4 +89,8 @@ Both DM Payload Viewer and Cassandra each run in their own container, with each 
 
 
 # Todo
-* Add yaml files for the proof-of-concept
+* Start sketching out the "How To Get Started" section.
+* Tidy up the yaml files
+* Add a step by step guide for recreating our POC in a new GCP project
+* Make sure the dockerfiles are available at some point if there is no IP in those files.
+* Mention the fact that we didn't explore RBAC.
