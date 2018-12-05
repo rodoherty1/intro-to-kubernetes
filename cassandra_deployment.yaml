@@ -36,6 +36,13 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        volumeMounts:
+        - name: cassandra-persistent-storage
+          mountPath: /var/lib/cassandra
+      volumes:
+      - name: cassandra-persistent-storage
+        persistentVolumeClaim:
+          claimName: cassandra-pv-claim
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
