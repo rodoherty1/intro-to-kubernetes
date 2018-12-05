@@ -41,7 +41,47 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Auto-scaling of the pods
 
 ## How to get started?
-* _TODO_
+### Sign up with GCP
+Sign up with Google Cloud Platform.
+
+You will hopefully have been awarded USD$300 of GCP credit which should hopefully last you a good amount of time.
+
+### Do a hello-world tutorial
+Follow the [GCP's Hello Kubernetes Lab](https://codelabs.developers.google.com/codelabs/cloud-hello-kubernetes/).
+
+Following this lab you will have `gcloud` and `kubectl` installed on your laptop.
+
+You will then have a basic usable Kubernetes Dev environment.
+
+### Dockerise your application
+Write a `Dockerfile` that can be built into an image that runs your application.
+
+Your application can be a rudimentary nodejs webserver (that's what I did) or a java application with a dependency on a Cassandra cluster (which is what we eventually created).
+
+To get started, your docker image will eventually be pushed to your own personal docker registry in GCP.
+
+To do this, you will first have to tag your image as follows:
+   
+    docker build -t gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1 .
+    
+Now push your image to your private docker registry in GCP as follows:
+
+    docker push gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1
+    
+### Create a simple Kubernetes cluster in GCP
+_todo_
+
+### Associate your local dev environment with your new Kubernetes cluster
+_todo: Mention gcloud and kubectl commands that set things up and explore the cluster_
+
+### Create your deployments
+_todo_
+
+### Create your services
+_todo_
+
+### Test and Debug your application
+_todo_
 
 ## Kubernetes Workflow
 * Declarative approach to K8s cluster design using YAML files  
@@ -83,7 +123,7 @@ Both DM Payload Viewer and Cassandra each run in their own container, with each 
 * [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)
 * [A Cloud Guru - Kubernetes Deep Dive](https://acloud.guru/learn/kubernetes-deep-dive)
 * [GCP YouTube Channel - Kubernetes Best Practices playlist](https://www.youtube.com/watch?v=wGz_cbtCiEA&list=PLIivdWyY5sqL3xfXz5xJvwzFW_tlQB_GB)
-* [Hello Node Minikube](https://codelabs.developers.google.com/codelabs/cloud-hello-kubernetes/)
+* [GCP's Hello Kubernetes Lab](https://codelabs.developers.google.com/codelabs/cloud-hello-kubernetes/)
 * [Hello Minikube Tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/#create-your-node-js-application)
 * [Kubectl Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
