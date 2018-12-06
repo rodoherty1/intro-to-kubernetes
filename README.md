@@ -60,6 +60,8 @@ Your application can be a rudimentary nodejs webserver (that's what I did) or a 
 
 To get started, your docker image will eventually be pushed to your own personal docker registry in GCP.
 
+_*todo*: Mention how your docker runtime can be associated with the registry in your GCP project_
+
 To do this, you will first have to tag your image as follows:
    
     docker build -t gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1 .
@@ -68,6 +70,8 @@ Now push your image to your private docker registry in GCP as follows:
 
     docker push gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1
     
+_todo: Add a link to Google's video on Docker Best Practices_
+
 ### Create a simple Kubernetes cluster in GCP
 _todo_
 
