@@ -58,11 +58,15 @@ Write a `Dockerfile` that can be built into an image that runs your application.
 
 Your application can be a rudimentary nodejs webserver (that's what I did) or a java application with a dependency on a Cassandra cluster (which is what we eventually created).
 
-To get started, your docker image will eventually be pushed to your own personal docker registry in GCP.
+First you should confirm that your docker image can be run in your local machine.
 
 _*todo*: Mention how your docker runtime can be associated with the registry in your GCP project_
 
-To do this, you will first have to tag your image as follows:
+The next step is to tag your image with a name that GCP will accept.
+
+    docker tag myapplication:v1 gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1
+
+Alternatively you could just build your image with a specific name.
    
     docker build -t gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1 .
     
@@ -96,6 +100,8 @@ _todo_
 DM Payload Viewer and a single-node Cassandra instance are running in Google Cloud Platform.
 Both services are deployed into Google Kubernetes Engine, GCP's managed Kubernetes Platform.
 Both DM Payload Viewer and Cassandra each run in their own container, with each container running in its own Pod.
+The Cassandra deployment mounts a volume which is provision as permanent storage by GCP.
+This ensures that when Cassandra pods are re-provisioned, the data in the database is not lost.
 
 ```
              +-------+                                       +-------+
