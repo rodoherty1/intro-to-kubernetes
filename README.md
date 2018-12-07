@@ -144,3 +144,8 @@ This ensures that when Cassandra pods are re-provisioned, the data in the databa
 * Add a step by step guide for recreating our POC in a new GCP project
 * Make sure the dockerfiles are available at some point if there is no IP in those files.
 * Mention the fact that we didn't explore RBAC.
+* Mention the GCP private container registry and the implications for PPB projects.
+* Mention how environment variables can be added via the deployment descriptor.
+* Update the ascii image so that it references the persistent storage
+* Explain the difference between cluster auotscaling and pod autoscaling.
+
