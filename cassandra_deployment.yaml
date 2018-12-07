@@ -31,6 +31,11 @@ spec:
     spec:
       containers:
       - image: gcr.io/MY_PROJECT/cassandra:v3
+        env:
+        - name: MY_POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
         imagePullPolicy: IfNotPresent
         name: cassandra
         resources: {}
