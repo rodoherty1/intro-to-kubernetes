@@ -58,11 +58,13 @@ Write a `Dockerfile` that can be built into an image that runs your application.
 
 Your application can be a rudimentary nodejs webserver (that's what I did) or a java application with a dependency on a Cassandra cluster (which is what we eventually created).
 
-First you should confirm that your docker image can be run in your local machine.
+First you should confirm that your docker image runs correctly on your local machine.
 
-_*todo*: Mention how your docker runtime can be associated with the registry in your GCP project_
+Next, configure your docker runtime so that it can push images to the docker container registry in your GCP project.
 
-The next step is to tag your image with a name that GCP will accept.
+    gcloud auth configure-docker
+
+Now tag your image with a name that GCP will accept.
 
     docker tag myapplication:v1 gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1
 
@@ -74,14 +76,30 @@ Now push your image to your private docker registry in GCP as follows:
 
     docker push gcr.io/[MY_GCP_PROJECT_NAME]/myapplication:v1
     
-_todo: Add a link to Google's video on Docker Best Practices_
+As a side note, check out this [8 minute video](https://www.youtube.com/watch?v=wGz_cbtCiEA) from the official GCP YouTube channel about how to keep your docker images small.
 
 ### Create a simple Kubernetes cluster in GCP
-_todo_
+Open the [GCP Console](https://cloud.google.com/) -> _Kubernetes Clusters_ and click _Create Cluster_.
+
+Select a _Standard Cluster_.  This will create a 3 node cluster with modest hardware performance.
 
 ### Associate your local dev environment with your new Kubernetes cluster
-_todo: Mention gcloud and kubectl commands that set things up and explore the cluster_
+When your cluster has been provisioned, click on the small _connect_ button.
 
+You will see a shell command like the following which you should run in your local dev machine.
+
+    gcloud container clusters get-credentials <YOUR_CLUSTER_NAME> --zone us-central1-a --project <YOUR_GCP_PROJECT_NAME>
+    
+Hopefully, the following commands also work.
+
+    kubectl get pods
+    kubectl get services
+    kubectl get deployments
+    kubectl get pvc
+    kubectl get pv 
+    
+All of the above will show no resources because all you have done is provision some VMs and started an empty Kubernetes cluster.  We have not depoyed any services ```kubectl``` has nothing to report. 
+    
 ### Create your deployments
 _todo_
 
