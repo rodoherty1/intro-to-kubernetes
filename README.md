@@ -100,7 +100,7 @@ Hopefully, the following commands also work.
     
 All of the above will show no resources because all you have done is provision some VMs and started an empty Kubernetes cluster.  We have not depoyed any services ```kubectl``` has nothing to report. 
     
-### Create a Kubernetes deployment
+### Create a Kubernetes Deployment
 Your application is represented by the docker images you created earlier.
 
 When launched, your application will run in a docker container.
@@ -124,11 +124,44 @@ You may now view your new pod.
     > kubectl get pods
     
     
-### Create your services
+### Create a Kubernetes Service
+
+Pods are expected to be created and destroyed reasonably frequently.
+
+Auto-scaling rules may create or destroy pods or you may have a busy continuous deployment pipeline.
+
+When a pod is destroyed and a new one takes its place, it has a new hostname and ip address. 
+
+To help establish a reliable presence in your cluster, you may create a service for your replica-set of pods.
+
+You may assign your service a user-friendly hostname and its IP address will remain the same throughout its service to your chosen replica-set.
+
+It is expected that other pods in your cluster will locate each other by interacting with ```service``` objects in your cluster.
+
+Here is a [sample service](https://github.com/rodoherty1/intro-to-kubernetes/blob/master/payloadviewer_service.yaml) which is launched in the same way that we launched the ```deployment``` in the previous section.
+
+    > kubectl apply -f payloadviewer_service.yaml
+   
+When the service has been created, you will see that it has an external IP Address.
+
+    > kubectl get service payloadviewer
+
+This is the IP address that you will use to communicate with your application.
+
+
+### Attach persistent storage to your Pod
 _todo_
 
 ### Test and Debug your application
-_todo_
+
+The previous steps described above show how to launch a docker container in a pod and expose it to the world using a Kubernetes Service.
+
+If, however, you wish to debug it, there are some options.
+
+    > kubectl get pods
+    > kubectl exec -it [MY_POD_NAME] /bin/bash    # You are now ssh'd into your container and you may debug as you wish. 
+    > kubectl logs payloadviewer                  # This will show some logs that your application may have produce while it was running.
+
 
 ## Kubernetes Workflow
 * Declarative approach to K8s cluster design using YAML files  
