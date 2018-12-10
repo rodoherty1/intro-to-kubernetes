@@ -1,20 +1,11 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "4"
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"extensions/v1beta1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"2"},"creationTimestamp":null,"generation":1,"labels":{"app":"payloadviewer"},"name":"payloadviewer","namespace":"default","selfLink":"/apis/extensions/v1beta1/namespaces/default/deployments/payloadviewer"},"spec":{"progressDeadlineSeconds":600,"replicas":1,"revisionHistoryLimit":10,"selector":{"matchLabels":{"app":"payloadviewer"}},"strategy":{"rollingUpdate":{"maxSurge":"25%","maxUnavailable":"25%"},"type":"RollingUpdate"},"template":{"metadata":{"creationTimestamp":null,"labels":{"app":"payloadviewer"}},"spec":{"containers":[{"image":"gcr.io/MY_PROJECT/payload-viewer:v3","imagePullPolicy":"IfNotPresent","name":"payloadviewer","resources":{},"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{}}
-  creationTimestamp: null
-  generation: 1
   labels:
     app: payloadviewer
   name: payloadviewer
-  selfLink: /apis/extensions/v1beta1/namespaces/default/deployments/payloadviewer
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: payloadviewer
@@ -25,7 +16,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: payloadviewer
     spec:
@@ -33,12 +23,5 @@ spec:
       - image: gcr.io/MY_PROJECT/payload-viewer:v3
         imagePullPolicy: IfNotPresent
         name: payloadviewer
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
       restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
       terminationGracePeriodSeconds: 30
-status: {}
