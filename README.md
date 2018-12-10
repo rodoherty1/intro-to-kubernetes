@@ -24,7 +24,7 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Applications with a graphical frontend are not well suited to containers.  X11 forwarding is a clunky workaround. 
 
 
-## What are the features of Kubernetes?
+## Some features of Kubernetes?
 * Command line interface with `kubectl`
 * Easy rollout of versioned deployments 
 * Auto scaling
@@ -100,9 +100,30 @@ Hopefully, the following commands also work.
     
 All of the above will show no resources because all you have done is provision some VMs and started an empty Kubernetes cluster.  We have not depoyed any services ```kubectl``` has nothing to report. 
     
-### Create your deployments
-_todo_
+### Create a Kubernetes deployment
+Your application is represented by the docker images you created earlier.
 
+When launched, your application will run in a docker container.
+
+In Kubernetes, it is standard practice to launch each docker container inside its own Kubernetes Pod.  
+
+You can generally replace the word "pod" with "container" and accurately understand the concept.
+
+_Credit:_ [coreos.com](https://coreos.com/kubernetes/docs/latest/pods.html) 
+
+To launch your container in a pod, you must describe to Kubernetes how you want your application to run.  
+
+This description is expressed in ```yaml``` and is called a `deployment descriptor`.  See [payloadviewer_deployment.yaml](https://github.com/rodoherty1/intro-to-kubernetes/blob/master/payloadviewer_deployment.yaml).
+
+You launch the payloadviewer pod by publishing ```payloadviewer_deployment.yaml``` to your cluster as follows:
+
+    > kubectl apply -f payloadviewer_deployment.yaml
+
+You may now view your new pod.
+
+    > kubectl get pods
+    
+    
 ### Create your services
 _todo_
 
