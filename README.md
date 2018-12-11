@@ -1,6 +1,51 @@
 # Introduction to Kubernetes
 
-# What is a container?
+## What did we do?
+
+A java application and a single-node Cassandra instance are running in Google Cloud Platform.
+
+Both services are deployed into Google Kubernetes Engine.
+
+Both DM Payload Viewer and Cassandra each run in their own container, with each container running in its own Pod.
+
+The Cassandra deployment mounts a volume which is provision as permanent storage by GCP.
+
+This ensures that when Cassandra pods are re-provisioned, the data in the database is not lost.
+
+```
+             +-------+                                       +-------+
+             |Service|                                       |Service|
+             +-------+                                       +-------+
+                 |                                               |
+                 |                                               |
+                 |                                               |
+                 |                                               |
++----------------+-----------------+            +----------------+-----------------+
+|Deployment                        |            |Deployment                        |
+|                                  |            |                                  |
+|    +------------------------+    |            |    +------------------------+    |
+|    |Pod                     |    |            |    |Pod                     |    |
+|    |                        |    |            |    |                        |    |
+|    | +--------------------+ |    |            |    | +--------------------+ |    |
+|    | |Cassandra Container | |    |            |    | |Payload Viewer      | |    |
+|    | |                    | |    |            |    | |Container           | |    |
+|    | |                    | |    |            |    | |                    | |    |
+|    | +--------------------+ |    |            |    | +--------------------+ |    |
+|    |                        |    |            |    |                        |    |
+|    +------------------------+    |            |    +------------------------+    |
+|                                  |            |                                  |
++----------------+-----------------+            +----------------------------------+
+                 |
+                 |
+                 v
+           +-----+----+
+           |          |
+           |   20GB   |
+           |          |
+           +----------+
+```
+
+## What is a container?
 Containers are made possible by a set of facilities in the Linux Kernel that allow lightweight partitioning of a host operating system into isolated spaces—containers—where applications can safely run.
 
 _Credit:_ [Pantheon - Why Containers?](https://pantheon.io/platform/why-containers)
@@ -22,7 +67,6 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Containers do not run at bare metal speed.  More suited to microservice style applications that can benefit from horizontally scale.
 * Not all applications suit the architecture of microservies.
 * Applications with a graphical frontend are not well suited to containers.  X11 forwarding is a clunky workaround. 
-
 
 ## Some features of Kubernetes?
 * Command line interface with `kubectl`
@@ -193,52 +237,13 @@ The disk will remain as pods are created and destroyed.  Your data is safe!
 
 ### Test and Debug your application
 
-The previous steps described above show how to launch a docker container in a pod and expose it to the world using a Kubernetes Service.
+The above steps show how to launch a docker container in a pod and expose it to the world using a Kubernetes Service.
 
 If, however, you wish to debug it, there are some options.
 
     > kubectl get pods
     > kubectl exec -it [MY_POD_NAME] /bin/bash    # You are now ssh'd into your container and you may debug as you wish. 
     > kubectl logs payloadviewer                  # This will show some logs that your application may have produce while it was running.
-
-
-## Kubernetes Workflow
-* Declarative approach to K8s cluster design using YAML files  
-* `kubectl` command line interface
-* Namespaces and Labels
-
-## Small demo
-DM Payload Viewer and a single-node Cassandra instance are running in Google Cloud Platform.
-Both services are deployed into Google Kubernetes Engine, GCP's managed Kubernetes Platform.
-Both DM Payload Viewer and Cassandra each run in their own container, with each container running in its own Pod.
-The Cassandra deployment mounts a volume which is provision as permanent storage by GCP.
-This ensures that when Cassandra pods are re-provisioned, the data in the database is not lost.
-
-```
-             +-------+                                       +-------+
-             |Service|                                       |Service|
-             +-------+                                       +-------+
-                 |                                               |
-                 |                                               |
-                 |                                               |
-                 |                                               |
-+----------------------------------+            +----------------------------------+
-|Deployment                        |            |Deployment                        |
-|                                  |            |                                  |
-|    +------------------------+    |            |    +------------------------+    |
-|    |Pod                     |    |            |    |Pod                     |    |
-|    |                        |    |            |    |                        |    |
-|    | +--------------------+ |    |            |    | +--------------------+ |    |
-|    | |Cassandra Container | |    |            |    | |Payload Viewer      | |    |
-|    | |                    | |    |            |    | |Container           | |    |
-|    | |                    | |    |            |    | |                    | |    |
-|    | +--------------------+ |    |            |    | +--------------------+ |    |
-|    |                        |    |            |    |                        |    |
-|    +------------------------+    |            |    +------------------------+    |
-|                                  |            |                                  |
-+----------------------------------+            +----------------------------------+
-```
-
 
 ## Some great resources for getting started
 * [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)
@@ -248,15 +253,8 @@ This ensures that when Cassandra pods are re-provisioned, the data in the databa
 * [Hello Minikube Tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/#create-your-node-js-application)
 * [Kubectl Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
-
 # Todo
-* Start sketching out the "How To Get Started" section.
 * Tidy up the yaml files
-* Add a step by step guide for recreating our POC in a new GCP project
-* Make sure the dockerfiles are available at some point if there is no IP in those files.
-* Mention the fact that we didn't explore RBAC.
 * Mention the GCP private container registry and the implications for PPB projects.
 * Mention how environment variables can be added via the deployment descriptor.
-* Update the ascii image so that it references the persistent storage
-* Explain the difference between cluster auotscaling and pod autoscaling.
 
