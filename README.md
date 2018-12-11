@@ -40,7 +40,20 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Auto-scaling of the cluster nodes
 * Auto-scaling of the pods
 
-## How to get started?
+## Getting Started With Kubernetes?
+In brief:
+
+* Sign up with GCP
+* Do the hello-world tutorial
+* Select an application and Dockerise it
+* Create your Kubernetes Cluster
+* Set up your local dev environment
+* Deploy your application
+* Expose your application
+* Test and Debug your application
+
+... and now, in detail ... 
+
 ### Sign up with GCP
 Sign up with Google Cloud Platform.
 
@@ -150,7 +163,33 @@ This is the IP address that you will use to communicate with your application.
 
 
 ### Attach persistent storage to your Pod
-_todo_
+
+In  Google Cloud Platform, it is very simple to attach persistent storage to your pods.
+
+Two steps are required:
+
+#### 1) Create a Persistent Storage Claim object on your Kubernetes cluster.  
+
+A Persistent Storage Claim (PVC) is a request for storage.  For example: I would like a 20GB disk.
+
+Here is a sample [PVC](https://github.com/rodoherty1/intro-to-kubernetes/blob/master/cassandra-pvc.yaml).
+
+#### 2) Attach the PVC to your Deployment
+
+The next step is to mount the provision disk on your pods as follows.
+
+```
+      volumes:
+      - name: cassandra-persistent-storage
+        persistentVolumeClaim:
+          claimName: cassandra-pv-claim
+```
+
+See the bottom of [cassandra_deployment.yaml](https://github.com/rodoherty1/intro-to-kubernetes/blob/master/cassandra_deployment.yaml) to see how the above snippet is used.
+
+With this snippet in place, every pod that is created as part of this deployment, will mount this disk.
+
+The disk will remain as pods are created and destroyed.  Your data is safe!
 
 ### Test and Debug your application
 
