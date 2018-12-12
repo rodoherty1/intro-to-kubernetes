@@ -40,7 +40,7 @@ This ensures that when Cassandra pods are re-provisioned, the data in the databa
                  v
            +-----+----+
            |          |
-           |   20GB   |
+           |    2GB   |
            |          |
            +----------+
 ```
