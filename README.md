@@ -253,8 +253,3 @@ If, however, you wish to debug it, there are some options.
 * [Hello Minikube Tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/#create-your-node-js-application)
 * [Kubectl Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
 
-# Todo
-* Tidy up the yaml files
-* Mention the GCP private container registry and the implications for PPB projects.
-* Mention how environment variables can be added via the deployment descriptor.
-
