@@ -5,16 +5,10 @@ metadata:
     app: cassandra
   name: cassandra
 spec:
-  progressDeadlineSeconds: 120
   replicas: 1
   selector:
     matchLabels:
       app: cassandra
-  strategy:
-    rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
