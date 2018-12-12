@@ -9,11 +9,6 @@ spec:
   selector:
     matchLabels:
       app: payloadviewer
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -21,7 +16,4 @@ spec:
     spec:
       containers:
       - image: gcr.io/MY_PROJECT/payload-viewer:v3
-        imagePullPolicy: IfNotPresent
         name: payloadviewer
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
