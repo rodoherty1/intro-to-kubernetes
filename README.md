@@ -2,15 +2,13 @@
 
 ## What did we do?
 
-A java application and a single-node Cassandra instance are running in Google Cloud Platform.
+A java application and a single-node Cassandra instance are running in Google Kubernetes Engine.
 
-Both services are deployed into Google Kubernetes Engine.
+The java app and Cassandra each run in their own container, with each container running in its own Pod.
 
-Both DM Payload Viewer and Cassandra each run in their own container, with each container running in its own Pod.
+The Cassandra deployment mounts a volume which is provisioned by Google Cloud Platform.
 
-The Cassandra deployment mounts a volume which is provision as permanent storage by GCP.
-
-This ensures that when Cassandra pods are re-provisioned, the data in the database is not lost.
+This ensures that when Cassandra pods are re-provisioned, the data is not lost.
 
 ```
              +-------+                                       +-------+
@@ -68,14 +66,9 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Not all applications suit the architecture of microservies.
 * Applications with a graphical frontend are not well suited to containers.  X11 forwarding is a clunky workaround. 
 
-## Some features of Kubernetes?
-* Command line interface with `kubectl`
-* Easy rollout of versioned deployments 
-* Auto scaling
-* Persistent Storage
-* Role-based Access Control
-
-## Key concepts of Kubernetes
+## Some concepts of Kubernetes
+* Command line interface with `kubectl` which wraps and extends the familiar `docker` command.
+* Declaritive workflow - Developer describes desired cluster state in yaml files and publish these to the K8s API server. 
 * Container Registry
 * Pod
 * Deployment
@@ -83,6 +76,7 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Persistent Storage
 * Auto-scaling of the cluster nodes
 * Auto-scaling of the pods
+* Role-based Access Control
 
 ## Getting Started With Kubernetes?
 In brief:
