@@ -43,6 +43,14 @@ This ensures that when Cassandra pods are re-provisioned, the data is not lost.
            +----------+
 ```
 
+## Some great resources for getting started
+* [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)
+* [A Cloud Guru - Kubernetes Deep Dive](https://acloud.guru/learn/kubernetes-deep-dive)
+* [GCP YouTube Channel - Kubernetes Best Practices playlist](https://www.youtube.com/watch?v=wGz_cbtCiEA&list=PLIivdWyY5sqL3xfXz5xJvwzFW_tlQB_GB)
+* [GCP's Hello Kubernetes Lab](https://codelabs.developers.google.com/codelabs/cloud-hello-kubernetes/)
+* [Hello Minikube Tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/#create-your-node-js-application)
+* [Kubectl Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 ## What is a container?
 Containers are made possible by a set of facilities in the Linux Kernel that allow lightweight partitioning of a host operating system into isolated spaces—containers—where applications can safely run.
 
@@ -239,11 +247,5 @@ If, however, you wish to debug it, there are some options.
     > kubectl exec -it [MY_POD_NAME] /bin/bash    # You are now ssh'd into your container and you may debug as you wish. 
     > kubectl logs payloadviewer                  # This will show some logs that your application may have produce while it was running.
 
-## Some great resources for getting started
-* [The Illustrated Children's Guide to Kubernetes](https://www.youtube.com/watch?v=4ht22ReBjno)
-* [A Cloud Guru - Kubernetes Deep Dive](https://acloud.guru/learn/kubernetes-deep-dive)
-* [GCP YouTube Channel - Kubernetes Best Practices playlist](https://www.youtube.com/watch?v=wGz_cbtCiEA&list=PLIivdWyY5sqL3xfXz5xJvwzFW_tlQB_GB)
-* [GCP's Hello Kubernetes Lab](https://codelabs.developers.google.com/codelabs/cloud-hello-kubernetes/)
-* [Hello Minikube Tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/#create-your-node-js-application)
-* [Kubectl Cheatsheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
 
