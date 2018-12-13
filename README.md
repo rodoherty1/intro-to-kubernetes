@@ -74,7 +74,7 @@ _Credit:_ [cloud.google.com - Containers 101](https://cloud.google.com/container
 * Not all applications suit the architecture of microservies.
 * Applications with a graphical frontend are not well suited to containers.  X11 forwarding is a clunky workaround. 
 
-## Some concepts of Kubernetes
+## Short list of some basic Kubernetes concepts
 * Command line interface with `kubectl` which wraps and extends the familiar `docker` command.
 * Declaritive workflow - Developer describes desired cluster state in yaml files and publish these to the K8s API server. 
 * Container Registry
