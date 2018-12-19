@@ -31,3 +31,8 @@
 * docker tag [MY_DOCKER_IMAGE] [AWS_ACCOUNT_ID].dkr.ecr.[REGION].amazonaws.com/[MY_APPLICATION_NAME]:v1
 
 * docker push [AWS_ACCOUNT_ID].dkr.ecr.[REGION].amazonaws.com/[MY_APPLICATION_NAME]:v1
+
+
+## TODO
+Mention that CloudFormation is required to set up a separate VPC for each K8s cluster.
+The template is supplied by the EKS service and costs $0.20 an hour to run.
