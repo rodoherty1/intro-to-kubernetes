@@ -1,6 +1,11 @@
 
 # Getting Started with Amazon EKS
 
+To compare the experience of deploying a simple application into Google Kubernetes Engine, we also deployed the same application into Amazon EKS (AWS ECS for Kubernetes).
+
+To the uninitiated, the EKS experience is a bit more complicated than the GKE experience.
+
+
 It is recommended that you first create a user that will administer the cluster.
 
 ## Creating IAM resources
