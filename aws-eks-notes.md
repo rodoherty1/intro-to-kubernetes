@@ -3,15 +3,15 @@
 
 To compare the experience of deploying a simple application into Google Kubernetes Engine, we also deployed the same application into Amazon EKS (AWS ECS for Kubernetes).
 
-To the uninitiated, the EKS experience is a bit more complicated than the GKE experience.
+To the uninitiated, the EKS experience is a bit more complicated than the Google Kubernetes Engine experience.
 
-
-It is recommended that you first create a user that will administer the cluster.
+It is recommended that you first create a user that will administer the Kubernetes cluster.  Details below!
 
 ## Creating IAM resources
-    * Create an IAM Role for the EKS Cluster that we are about to create.  This role will be used by Kubernetes so that it can create AWS resources on our behalf.
+
+* Create an IAM Role for the EKS Cluster that we are about to create.  I named this role `eks-service-role`.  This role will be used by Kubernetes so that it can create AWS resources on our behalf.
     
-    * Create a new IAM Policy called `my-eks-policy` with the following spec:
+* Create a new IAM Policy called `my-eks-policy` with the following spec:
 ```
 {
     "Version": "2012-10-17",
@@ -30,7 +30,7 @@ It is recommended that you first create a user that will administer the cluster.
 }
 ```
 
-    * Create IAM user called `k8sadmin`
+* Create IAM user called `k8sadmin`
 
 ## Creating the EKS Kubernetes Control Plane
     * aws eks create-cluster --name [MY_EKS_CLUSTER_NAME] --role-arn arn:aws:iam::111122223333:role/eks-service-role --resources-vpc-config subnetIds=[MY_SUBNET1],[MY_SUBNET2],securityGroupIds=[MY_SECURITY_GROUP]
